@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head :: head">
+        <title id="pageTitle"  th:text="#{label.add.edit}">Label Add/Edit</title>
+    </head>
+    <body>
+        <nav th:replace="fragments/navHeader :: navbar"></nav>
+        <div class="container has-text-centered">
+            <h2 class="title is-2" th:if= "${skillsAssessment.id != null}" th:text="#{label.edit.order}">label Edit</h2>
+            <h2 class="title is-2" th:if= "${skillsAssessment.id == null}" th:text="#{label.add.order}">label Add</h2>
+
+
+            <form th:action="@{/skillsassessmentsquashtechnical/submit}" method="post" class="wbb" style="display:inline-block;text-align:left!important">
+
+                <!-- Hidden ID field -->
+                <input type="hidden" th:field="${skillsAssessment.id}" />
+
+                <p>
+                    <label>Assessment Date:</label>
+                    <input type="date" th:field="${skillsAssessment.assessmentDate}" placeholder="YYYY-MM-DD" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.assessmentDate}')}" th:errors="${skillsAssessment.assessmentDate}"></p>
+                <!--            Show any business validation issues-->
+                <ul th:each="businessValidationError : ${businessValidationErrorsAssessmentDate}">
+                    <li class="cd" th:text="${businessValidationError}"></li>
+                </ul>
+                <p>
+                    <label>Created Date/Time:</label>
+                    <input type="text" th:field="${skillsAssessment.createdDateTime}" placeholder="YYYY-MM-DD HH:mm" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.createdDateTime}')}" th:errors="${skillsAssessment.createdDateTime}"></p>
+
+                <p>
+                    <label>Athlete Name:</label>
+                    <input type="text" th:field="${skillsAssessment.athleteName}" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.athleteName}')}" th:errors="${skillsAssessment.athleteName}"></p>
+
+                <p>
+                    <label>Assessor Name:</label>
+                    <input type="text" th:field="${skillsAssessment.assessorName}" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.assessorName}')}" th:errors="${skillsAssessment.assessorName}"></p>
+
+                <p>
+                    <label>Forehand Drives:</label>
+                    <input type="number" th:field="${skillsAssessment.forehandDrives}" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.forehandDrives}')}" th:errors="${skillsAssessment.forehandDrives}"></p>
+
+                <p>
+                    <label>Backhand Drives:</label>
+                    <input type="number" th:field="${skillsAssessment.backhandDrives}" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.backhandDrives}')}" th:errors="${skillsAssessment.backhandDrives}"></p>
+
+                <p>
+                    <label>Forehand Volley Max:</label>
+                    <input type="number" th:field="${skillsAssessment.forehandVolleyMax}" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.forehandVolleyMax}')}" th:errors="${skillsAssessment.forehandVolleyMax}"></p>
+
+                <p>
+                    <label>Forehand Volley Sum:</label>
+                    <input type="number" th:field="${skillsAssessment.forehandVolleySum}" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.forehandVolleySum}')}" th:errors="${skillsAssessment.forehandVolleySum}"></p>
+
+                <p>
+                    <label>Backhand Volley Max:</label>
+                    <input type="number" th:field="${skillsAssessment.backhandVolleyMax}" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.backhandVolleyMax}')}" th:errors="${skillsAssessment.backhandVolleyMax}"></p>
+
+                <p>
+                    <label>Backhand Volley Sum:</label>
+                    <input type="number" th:field="${skillsAssessment.backhandVolleySum}" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.backhandVolleySum}')}" th:errors="${skillsAssessment.backhandVolleySum}"></p>
+
+                <p>
+                    <label>Technical Score:</label>
+                    <input type="number" th:field="${skillsAssessment.technicalScore}" readonly="readonly" />
+                </p>
+                <p class="cd" th:if="${#fields.hasErrors('${skillsAssessment.technicalScore}')}" th:errors="${skillsAssessment.technicalScore}"></p>
+
+                <!-- Submit button -->
+                <button style="display:block;margin-top:24px!important" class="centered" th:text="#{label.submit}">Submit</button>
+            </form>
+
+        </div>
+        <footer th:replace="fragments/footer :: footer"></footer>
+    </body>
+</html>

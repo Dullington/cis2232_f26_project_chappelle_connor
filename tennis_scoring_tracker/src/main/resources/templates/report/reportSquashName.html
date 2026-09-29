@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <title id="pageTitle">Report</title>
+</head>
+<body>
+<style scoped="scoped">input:not(.hidden) {
+    display: inline-block;
+    float: right
+}
+
+.cd {
+    color: #F00 !important;
+    font-weight: bold;
+    margin-bottom: -48px
+}
+
+label {
+    margin-right: 8px
+}</style>
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+
+
+<div class="container has-text-centered">
+    <h2 class="title is-2" th:text="#{label.report.athlete.assessor.report}">_</h2>
+
+    <form th:action="@{/report/squash/name/submit}" method="post" class="wbb"
+          style="display:inline-block;text-align:left!important">
+        <label>Name (Athlete/Assessor): </label>
+        <input type="text" th:field="${reportInput.name}"></input>
+        <br></br>
+        <button style="display:block;margin-top:24px!important" class="centered">Submit</button>
+    </form>
+
+    <p th:if="${not #strings.isEmpty(message)}" th:text="#{error.message.no.data.found.name}">not found</p>
+    <!--https://stackoverflow.com/a/33106495-->
+    <table class="wbb centered" th:if="${not #lists.isEmpty(reportInput.skillsAssessmentSquashTechnicals)}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Assessment Date</th>
+            <th>Created DateTime</th>
+            <th>Athlete Name</th>
+            <th>Assessor Name</th>
+            <th>Forehand Drives</th>
+            <th>Backhand Drives</th>
+            <th>Forehand Volley Max</th>
+            <th>Forehand Volley Sum</th>
+            <th>Backhand Volley Max</th>
+            <th>Backhand Volley Sum</th>
+            <th>Technical Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item,iterStat : ${reportInput.skillsAssessmentSquashTechnicals}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.assessmentDate}"></td>
+            <td th:text="${item.createdDateTime}"></td>
+            <td th:text="${item.athleteName}"></td>
+            <td th:text="${item.assessorName}"></td>
+            <td th:text="${item.forehandDrives}"></td>
+            <td th:text="${item.backhandDrives}"></td>
+            <td th:text="${item.forehandVolleyMax}"></td>
+            <td th:text="${item.forehandVolleySum}"></td>
+            <td th:text="${item.backhandVolleyMax}"></td>
+            <td th:text="${item.backhandVolleySum}"></td>
+            <td th:text="${item.technicalScore}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<br></br>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

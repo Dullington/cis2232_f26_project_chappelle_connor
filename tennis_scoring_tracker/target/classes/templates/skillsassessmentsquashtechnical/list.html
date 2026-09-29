@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<!--Thanks to Ferhad, Francisco, and Carter from grad 2022 for the styling on this page.-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <title id="pageTitle" th:text="${session.title}">Topic List</title>
+</head>
+<body>
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+<div class="container my-4">
+    <h2 class="mb-3 text-center title">Skills Assessment List</h2>
+    <h2 class="mb-3 text-center error" th:if="${not #strings.isEmpty(messageError)}" th:text="${messageError}" >Message from controller</h2>
+    <h2 class="mb-3 text-center success" th:if="${not #strings.isEmpty(messageSuccess)}" th:text="${messageSuccess}" >Message success from controller</h2>
+
+<!--    Adding for demo of using a CodeValue table for dynamic lists.-->
+    <label for="skillSelect">Choose a skill (for demo of CodeValue only):</label>
+    <select id="skillSelect" name="selectedSkill">
+        <option value="">-- Select --</option>
+        <option th:each="codeValue : ${session.skillTypes}" th:value="${codeValue.id.codeValueSequence}" th:text="${codeValue.englishDescription}"></option>
+    </select>
+
+    <!--    Adding ability to search by athlete name-->
+<!--    <label for="skillSelect">Choose athlete:</label>-->
+<!--    <select id="skillSelect" name="selectedSkill">-->
+<!--        <option value="">&#45;&#45; Select &#45;&#45;</option>-->
+<!--        <option th:each="codeValue : ${session.skillTypes}" th:value="${codeValue.id.codeValueSequence}" th:text="${codeValue.englishDescription}"></option>-->
+<!--    </select>-->
+    <form th:object="${assessment}" action="replacedBeforePageRendered" th:action="@{/skillsassessmentsquashtechnical/search}"  method="post">
+        <label for="name" th:text="#{label.search.name}">Name</label>
+        <input type="text" id="name" th:field="${assessment.athleteName}"/>
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="table-responsive">
+        <table id="theData" class="table table-striped table-hover align-middle">
+            <thead class="table-dark text-center">
+            <tr>
+                <th>ID</th>
+                <th>Assessment Date</th>
+                <th>Created Date/Time</th>
+                <th>Athlete Name</th>
+                <th>Assessor Name</th>
+                <th>Forehand Drives</th>
+                <th>Backhand Drives</th>
+                <th>Forehand Volley Max</th>
+                <th>Forehand Volley Sum</th>
+                <th>Backhand Volley Max</th>
+                <th>Backhand Volley Sum</th>
+                <th>Technical Score</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="current : ${assessments}">
+                <td th:text="${current.id}"></td>
+                <td th:text="${current.assessmentDate}"></td>
+                <td th:text="${current.createdDateTime}"></td>
+                <td th:text="${current.athleteName}"></td>
+                <td th:text="${current.assessorName}"></td>
+                <td th:text="${current.forehandDrives}"></td>
+                <td th:text="${current.backhandDrives}"></td>
+                <td th:text="${current.forehandVolleyMax}"></td>
+                <td th:text="${current.forehandVolleySum}"></td>
+                <td th:text="${current.backhandVolleyMax}"></td>
+                <td th:text="${current.backhandVolleySum}"></td>
+                <td th:text="${current.technicalScore}"></td>
+
+                <td class="text-center">
+                    <div class="btn-group" role="group">
+                        <a th:href="@{/skillsassessmentsquashtechnical/edit/{id}(id=${current.id})}"
+                           class="btn btn-sm btn-outline-primary" title="Edit">
+                            <i class="accent fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{/skillsassessmentsquashtechnical/delete/{id}(id=${current.id})}"
+                           class="btn btn-sm btn-outline-danger" title="Delete">
+                            <i class="accent fas fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Message when no data -->
+            <tr th:if="${#lists.isEmpty(assessments)}">
+                <td colspan="13" class="text-center text-muted py-4">
+                    No assessments found.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Optional "Add new" button -->
+    <div class="text-center mt-3">
+        <a th:href="@{/skillsassessmentsquashtechnical/add}" href="/skillsassessmentsquashtechnical/add" class="accent accent-background btn btn-success">
+            <i class="fas fa-plus"></i> Add New Assessment
+        </a>
+    </div>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

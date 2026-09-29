@@ -1,0 +1,40 @@
+type SkillsAssessmentSquashTechnical {
+  id: Int
+  assessmentDate: String
+  createdDateTime: String
+  athleteName: String
+  assessorName: String
+  forehandDrives: Int
+  backhandDrives: Int
+  forehandVolleyMax: Int
+  forehandVolleySum: Int
+  backhandVolleyMax: Int
+  backhandVolleySum: Int
+  technicalScore: Int
+}
+
+input SkillsAssessmentSquashTechnicalInput {
+  assessmentDate: String
+  createdDateTime: String
+  athleteName: String!
+  assessorName: String!
+  forehandDrives: Int
+  backhandDrives: Int
+  forehandVolleyMax: Int
+  forehandVolleySum: Int
+  backhandVolleyMax: Int
+  backhandVolleySum: Int
+}
+
+type Query {
+  assessments: [SkillsAssessmentSquashTechnical!]!
+  assessmentById(id: Int!): SkillsAssessmentSquashTechnical
+  findByAthlete(name: String!): [SkillsAssessmentSquashTechnical!]!
+  findByAssessor(name: String!): [SkillsAssessmentSquashTechnical!]!
+}
+
+type Mutation {
+  createAssessment(input: SkillsAssessmentSquashTechnicalInput!): SkillsAssessmentSquashTechnical!
+  updateAssessment(id: Int!, input: SkillsAssessmentSquashTechnicalInput!): SkillsAssessmentSquashTechnical!
+  deleteAssessment(id: Int!): Boolean!
+}

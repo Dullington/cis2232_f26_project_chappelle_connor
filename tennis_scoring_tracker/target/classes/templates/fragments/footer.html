@@ -1,0 +1,15 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+    <footer th:fragment="footer" class="footer ftr">
+        <div>
+            <div class="content has-text-centered">
+                <!-- BJM 20200602 Issue#1  ${serverTime}-->
+<!--                <span th:text="${session.currentDate}"></span> example accessing from the session-->
+                <span th:text="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}"></span>&nbsp;&nbsp;<span th:text="#{label.business.name}">label business name</span>
+            </div>
+        </div>
+    </footer>
+    </body>
+
+</html>

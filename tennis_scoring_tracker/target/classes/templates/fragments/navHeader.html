@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<nav th:fragment="navbar" class="navbar nav" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a th:href="@{/}" class="vert-align">
+            <img src="/images/ic_launcher.png" class="logo"></span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" id="burg"
+           onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');"
+           data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a th:href="@{/skillsassessmentsquashtechnical}" href="/skillsassessmentsquashtechnical/" class="accent navbar-link">Assessments</a>
+                <div class="accent-background navbar-dropdown">
+                    <a th:href="@{/skillsassessmentsquashtechnical}" class="accent navbar-item">View</a>
+                    <a th:href="@{/skillsassessmentsquashtechnical/list/edit}" class="accent navbar-item">List Edit</a>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a th:href="@{/report}" href="/about" class="accent navbar-link">Reports</a>
+                    <div class="accent-background navbar-dropdown">
+                        <a th:href="@{/report/squash/name}" class="accent navbar-item"
+                           th:text="#{label.report.athlete.assessor.report}">Name report-placeholder</a>
+                        <a th:href="@{/report/squash/score}" class="accent navbar-item"
+                           th:text="#{label.report.score.range}">Score range report-placeholder</a>
+                    </div>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a th:href="@{/about}" href="/about" class="accent navbar-link">Other</a>
+                        <div class="accent-background navbar-dropdown">
+                            <a th:href="@{/about}" href="/about" class="accent navbar-item">About</a>
+                            <hr class="navbar-divider">
+                            <a th:href="@{/pirate}" href="/pirate" class="accent navbar-item">Pirate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

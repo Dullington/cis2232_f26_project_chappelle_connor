@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<!--Thanks to Ferhad, Francisco, and Carter from grad 2022 for the styling on this page.-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <title id="pageTitle" th:text="${session.title}">Topic List</title>
+</head>
+<body>
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+<div class="container my-4">
+    <h2 class="mb-3 text-center title">Skills Assessment List for Edit</h2>
+    <h2 class="mb-3 text-center error" th:if="${not #strings.isEmpty(messageError)}" th:text="${messageError}">Message
+        from controller</h2>
+    <h2 class="mb-3 text-center success" th:if="${not #strings.isEmpty(messageSuccess)}" th:text="${messageSuccess}">
+        Message success from controller</h2>
+
+    <div class="table-responsive">
+        <form action="#" th:action="@{/skillsassessmentsquashtechnical/list/edit/submit}" th:object="${form}"
+              method="post">
+            <fieldset>
+                <input type="submit" id="submitButton" th:value="Save">
+                <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>Assessment Date</th>
+                        <th>Created Date/Time</th>
+                        <th>Athlete Name</th>
+                        <th>Assessor Name</th>
+                        <th>Forehand Drives</th>
+                        <th>Backhand Drives</th>
+                        <th>Forehand Volley Max</th>
+                        <th>Forehand Volley Sum</th>
+                        <th>Backhand Volley Max</th>
+                        <th>Backhand Volley Sum</th>
+                        <th>Technical Score</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+<!--                    <tr th:each="book, itemStat : *{books}">-->
+<!--                        <td><input th:field="*{books[__${itemStat.index}__].title}" /></td>-->
+<!--                        <td><input th:field="*{books[__${itemStat.index}__].author}" /></td>-->
+
+                    <tr th:each="current,itemStat : ${form.assessments}">
+                        <td><input th:field="*{assessments[__${itemStat.index}__].id}"/></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].assessmentDate}"></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].createdDateTime}"></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].athleteName}"></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].assessorName}"></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].forehandDrives}"></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].backhandDrives}"></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].forehandVolleyMax}"></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].forehandVolleySum}"></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].backhandVolleyMax}"></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].backhandVolleySum}"></td>
+                        <td><input th:field="*{assessments[__${itemStat.index}__].technicalScore}"></td>
+                    </tr>
+
+                    <!-- Message when no data -->
+                    <tr th:if="${#lists.isEmpty(form.assessments)}">
+                        <td colspan="13" class="text-center text-muted py-4">
+                            No assessments found.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </form>
+    </div>
+
+
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
