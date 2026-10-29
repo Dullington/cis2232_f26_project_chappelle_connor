@@ -74,3 +74,6 @@ player2TotalPointsWon int Total points won by Player 2
 
 The app will calculate the winner by measuring each player’s points won and lost.
 
+# Report Details
+
+The percentage of sets won will be used to determine the placement of players in the tournament and then display the results of the tournament starting with the most sets won to the least.
