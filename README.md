@@ -27,9 +27,12 @@ This application tracks the score and statistics of a tennis match, including th
 | Name | Type | Description |
 | --- | --- | --- |
 | id | int | Unique identifier for database table |
-| firstName | String | Player first name |
-| lastName | String | Player last name |
-| dateOfBirth | String | Player date of birth |
+| player1firstName | String | Player first name |
+| player1lastName | String | Player last name |
+| player1dateOfBirth | String | Player date of birth |
+| player2firstName | String | Player first name |
+| player2lastName | String | Player last name |
+| player2dateOfBirth | String | Player date of birth |
 | matchDate | String | Date the match was played |
 | createdDateTime | String | Date and time the match was entered |
 | winnerName | String | Name of the player who won the match |
