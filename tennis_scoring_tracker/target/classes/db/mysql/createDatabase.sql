@@ -3,34 +3,48 @@
 # CREATE DATABASE bjmac_squash_skills_w26;
 # use bjmac_squash_skills_w26;
 
-#For localhost
-DROP DATABASE IF EXISTS cis2232_squash_scorer;
-CREATE DATABASE cis2232_squash_scorer;
-use cis2232_squash_scorer;
+ROP DATABASE IF EXISTS cis2232_tennis_tracker;
+CREATE DATABASE cis2232_tennis_tracker;
+USE cis2232_tennis_tracker;
 
--- ------------------------------------------------------------------------------
--- Note the table below to hold data associated with your project.  Expect one
--- table with 7-9 fields.
--- ------------------------------------------------------------------------------
+CREATE TABLE tennis_match (
+    id INT NOT NULL AUTO_INCREMENT,
 
-CREATE TABLE squash_match (
-                              id                  INT             NOT NULL AUTO_INCREMENT,
-                              matchDate           VARCHAR(10)    NOT NULL,
-                              createdDateTime     VARCHAR(100)   NOT NULL,
-                              player1Name         VARCHAR(100)    NOT NULL,
-                              player2Name         VARCHAR(100)    NOT NULL,
-                              player1Game1Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              player2Game1Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              player1Game2Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              player2Game2Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              player1Game3Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              player2Game3Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              player1Game4Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              player2Game4Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              player1Game5Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              player2Game5Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              winnerName          VARCHAR(100)    NOT NULL,
-                              PRIMARY KEY (id)
+    player1FirstName VARCHAR(100) NOT NULL,
+    player1LastName VARCHAR(100) NOT NULL,
+    player1DateOfBirth VARCHAR(10) NOT NULL,
+
+    player2FirstName VARCHAR(100) NOT NULL,
+    player2LastName VARCHAR(100) NOT NULL,
+    player2DateOfBirth VARCHAR(10) NOT NULL,
+
+    matchDate VARCHAR(10) NOT NULL,
+    createdDateTime VARCHAR(100) NOT NULL,
+    winnerName VARCHAR(201) NOT NULL,
+
+    tournamentName VARCHAR(150) NOT NULL,
+    courtSurface VARCHAR(20) NOT NULL,
+
+    setsPlayed INT NOT NULL,
+    player1SetsWon INT NOT NULL,
+    player2SetsWon INT NOT NULL,
+
+    player1Aces INT NOT NULL,
+    player2Aces INT NOT NULL,
+
+    player1DoubleFaults INT NOT NULL,
+    player2DoubleFaults INT NOT NULL,
+
+    player1FirstServe INT NOT NULL,
+    player2FirstServe INT NOT NULL,
+
+    player1BreakPointsWon INT NOT NULL,
+    player2BreakPointsWon INT NOT NULL,
+
+    player1TotalPointsWon INT NOT NULL,
+    player2TotalPointsWon INT NOT NULL,
+
+    PRIMARY KEY (id)
 );
 
 INSERT INTO squash_match

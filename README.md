@@ -55,4 +55,4 @@ The app will calculate the winner by measuring each player’s points won and lo
 
 # Report Details
 
-The percentage of sets won will be used to determine the placement of players in the tournament and then display the results of the tournament starting with the most sets won to the least. The overall winner is the player where the number of sets won is equal to the amount of sets played.
+The percentage of sets won will be used to determine the placement of players in the tournament and then display the results of the tournament starting with the most sets won to the least.

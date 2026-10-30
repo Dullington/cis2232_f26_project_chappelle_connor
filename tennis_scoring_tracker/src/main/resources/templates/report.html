@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tournament Report</title>
+</head>
+<body>
+
+<h1>Tournament Standings Report</h1>
+
+<form th:action="@{/report}" method="post">
+
+    <label for="tournament">Tournament Name:</label>
+
+    <input type="text"
+           id="tournament"
+           name="tournament"
+           required>
+
+    <button type="submit">Generate Report</button>
+
+</form>
+
+</body>
+</html>

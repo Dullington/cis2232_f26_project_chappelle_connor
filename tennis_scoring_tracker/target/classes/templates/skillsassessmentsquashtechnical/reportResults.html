@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tournament Report Results</title>
+</head>
+<body>
+
+<h1>Tournament Standings</h1>
+
+<h2 th:text="${tournament}">Tournament Name</h2>
+
+<p th:if="${error}" th:text="${error}"></p>
+
+<table th:if="${standings != null}" border="1">
+
+    <thead>
+    <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Matches Played</th>
+        <th>Sets Won</th>
+        <th>Sets Lost</th>
+        <th>Set Win Percentage</th>
+        <th>Aces</th>
+        <th>Double Faults</th>
+        <th>Average First Serve %</th>
+        <th>Break Points Won</th>
+        <th>Total Points Won</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="player, status : ${standings}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${player.playerName}"></td>
+        <td th:text="${player.matchesPlayed}"></td>
+        <td th:text="${player.setsWon}"></td>
+        <td th:text="${player.setsLost}"></td>
+        <td th:text="${player.setWinPercentage + '%'}"></td>
+        <td th:text="${player.aces}"></td>
+        <td th:text="${player.doubleFaults}"></td>
+        <td th:text="${player.firstServePercentage + '%'}"></td>
+        <td th:text="${player.breakPointsWon}"></td>
+        <td th:text="${player.totalPointsWon}"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+<p th:if="${standings != null and standings.isEmpty()}">
+    No tournament results were found.
+</p>
+
+<form th:action="@{/report/save}" method="post"
+      th:if="${standings != null and !standings.isEmpty()}">
+
+    <input type="hidden" name="tournament"
+           th:value="${tournament}">
+
+    <p th:if="${message}" th:text="${message}"></p>
+
+    <button type="submit">Save Report to File</button>
+
+</form>
+
+<a th:href="@{/report}">Generate Another Report</a>
+
+</body>
+</html>
