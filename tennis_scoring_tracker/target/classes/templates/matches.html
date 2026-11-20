@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tennis Matches</title>
+</head>
+<body>
+
+<h1>Tennis Match Records</h1>
+
+<a th:href="@{/matches/new}">Add New Match</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Player 1</th>
+        <th>Player 2</th>
+        <th>Winner</th>
+        <th>Tournament</th>
+        <th>Surface</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="match : ${matches}">
+        <td th:text="${match.matchDate}"></td>
+
+        <td th:text="${match.player1FirstName + ' ' + match.player1LastName}"></td>
+
+        <td th:text="${match.player2FirstName + ' ' + match.player2LastName}"></td>
+
+        <td th:text="${match.winnerName}"></td>
+
+        <td th:text="${match.tournamentName}"></td>
+
+        <td th:text="${match.courtSurface}"></td>
+
+        <td>
+            <a th:href="@{/matches/edit/{id}(id=${match.id})}">Edit</a>
+        </td>
+        <form th:action="@{/matches/delete/{id}(id=${match.id})}"
+              method="post">
+            <button type="submit">Delete</button>
+        </form>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/}">Back to Home</a>
+
+</body>
+</html>

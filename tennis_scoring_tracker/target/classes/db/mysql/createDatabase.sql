@@ -1,9 +1,4 @@
-# For hccis.ca version of the database
-# DROP DATABASE IF EXISTS bjmac_squash_skills_w26;
-# CREATE DATABASE bjmac_squash_skills_w26;
-# use bjmac_squash_skills_w26;
-
-ROP DATABASE IF EXISTS cis2232_tennis_tracker;
+DROP DATABASE IF EXISTS cis2232_tennis_tracker;
 CREATE DATABASE cis2232_tennis_tracker;
 USE cis2232_tennis_tracker;
 
@@ -47,7 +42,7 @@ CREATE TABLE tennis_match (
     PRIMARY KEY (id)
 );
 
-INSERT INTO squash_match
+INSERT INTO tennis_match
 (matchDate, createdDateTime, player1Name, player2Name,
  player1Game1Score, player2Game1Score,
  player1Game2Score, player2Game2Score,

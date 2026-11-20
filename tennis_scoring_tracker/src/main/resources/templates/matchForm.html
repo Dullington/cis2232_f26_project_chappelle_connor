@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tennis Match Form</title>
+</head>
+<body>
+
+<h1>Add Tennis Match</h1>
+
+<form th:action="@{/matches/save}" th:object="${tennisMatch}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <h2>Player 1</h2>
+
+    <label>First Name:</label>
+    <input type="text" th:field="*{player1FirstName}">
+    <span th:errors="*{player1FirstName}"></span>
+    <br>
+
+    <label>Last Name:</label>
+    <input type="text" th:field="*{player1LastName}">
+    <span th:errors="*{player1LastName}"></span>
+    <br>
+
+    <label>Date of Birth:</label>
+    <input type="date" th:field="*{player1DateOfBirth}">
+    <br>
+
+    <h2>Player 2</h2>
+
+    <label>First Name:</label>
+    <input type="text" th:field="*{player2FirstName}">
+    <span th:errors="*{player2FirstName}"></span>
+    <br>
+
+    <label>Last Name:</label>
+    <input type="text" th:field="*{player2LastName}">
+    <span th:errors="*{player2LastName}"></span>
+    <br>
+
+    <label>Date of Birth:</label>
+    <input type="date" th:field="*{player2DateOfBirth}">
+    <br>
+
+    <h2>Match Information</h2>
+
+    <label>Match Date:</label>
+    <input type="date" th:field="*{matchDate}">
+    <span th:errors="*{matchDate}"></span>
+    <br>
+
+    <label>Tournament Name:</label>
+    <input type="text" th:field="*{tournamentName}">
+    <span th:errors="*{tournamentName}"></span>
+    <br>
+
+    <label>Court Surface:</label>
+    <select th:field="*{courtSurface}">
+        <option value="">Select Surface</option>
+        <option value="Hard">Hard</option>
+        <option value="Clay">Clay</option>
+        <option value="Grass">Grass</option>
+    </select>
+    <span th:errors="*{courtSurface}"></span>
+    <br>
+
+    <label>Sets Played:</label>
+    <input type="number" th:field="*{setsPlayed}">
+    <span th:errors="*{setsPlayed}"></span>
+    <br>
+
+    <label>Player 1 Sets Won:</label>
+    <input type="number" th:field="*{player1SetsWon}">
+    <span th:errors="*{player1SetsWon}"></span>
+    <br>
+
+    <label>Player 2 Sets Won:</label>
+    <input type="number" th:field="*{player2SetsWon}">
+    <span th:errors="*{player2SetsWon}"></span>
+    <br>
+
+    <h2>Player 1 Statistics</h2>
+
+    <label>Aces:</label>
+    <input type="number" th:field="*{player1Aces}">
+    <span th:errors="*{player1Aces}"></span>
+    <br>
+
+    <label>Double Faults:</label>
+    <input type="number" th:field="*{player1DoubleFaults}">
+    <span th:errors="*{player1DoubleFaults}"></span>
+    <br>
+
+    <label>First Serve Percentage:</label>
+    <input type="number" th:field="*{player1FirstServe}">
+    <span th:errors="*{player1FirstServe}"></span>
+    <br>
+
+    <label>Break Points Won:</label>
+    <input type="number" th:field="*{player1BreakPointsWon}">
+    <span th:errors="*{player1BreakPointsWon}"></span>
+    <br>
+
+    <label>Total Points Won:</label>
+    <input type="number" th:field="*{player1TotalPointsWon}">
+    <span th:errors="*{player1TotalPointsWon}"></span>
+    <br>
+
+
+    <h2>Player 2 Statistics</h2>
+
+    <label>Aces:</label>
+    <input type="number" th:field="*{player2Aces}">
+    <span th:errors="*{player2Aces}"></span>
+    <br>
+
+    <label>Double Faults:</label>
+    <input type="number" th:field="*{player2DoubleFaults}">
+    <span th:errors="*{player2DoubleFaults}"></span>
+    <br>
+
+    <label>First Serve Percentage:</label>
+    <input type="number" th:field="*{player2FirstServe}">
+    <span th:errors="*{player2FirstServe}"></span>
+    <br>
+
+    <label>Break Points Won:</label>
+    <input type="number" th:field="*{player2BreakPointsWon}">
+    <span th:errors="*{player2BreakPointsWon}"></span>
+    <br>
+
+    <label>Total Points Won:</label>
+    <input type="number" th:field="*{player2TotalPointsWon}">
+    <span th:errors="*{player2TotalPointsWon}"></span>
+    <br>
+
+    <button type="submit">Save Match</button>
+
+</form>
+
+<a th:href="@{/matches}">Back to Matches</a>
+
+</body>
+</html>

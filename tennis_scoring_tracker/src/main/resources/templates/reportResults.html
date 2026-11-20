@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tournament Results</title>
+</head>
+<body>
+
+<h1>Tournament Standings</h1>
+
+<h2 th:text="${tournament}"></h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Matches Played</th>
+        <th>Sets Won</th>
+        <th>Sets Lost</th>
+        <th>Set Win Percentage</th>
+        <th>Aces</th>
+        <th>Double Faults</th>
+        <th>Break Points Won</th>
+        <th>Total Points Won</th>
+        <th>First Serve Percentage</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="player, status : ${standings}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${player.playerName}"></td>
+        <td th:text="${player.matchesPlayed}"></td>
+        <td th:text="${player.setsWon}"></td>
+        <td th:text="${player.setsLost}"></td>
+        <td th:text="${player.setWinPercentage}"></td>
+        <td th:text="${player.aces}"></td>
+        <td th:text="${player.doubleFaults}"></td>
+        <td th:text="${player.breakPointsWon}"></td>
+        <td th:text="${player.totalPointsWon}"></td>
+        <td th:text="${player.firstServePercentage}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<form th:action="@{/report/save}" method="post">
+    <input type="hidden" name="tournament" th:value="${tournament}">
+    <button type="submit">Save Report</button>
+</form>
+
+<br>
+
+<a th:href="@{/report}">Back to Reports</a>
+
+</body>
+</html>
