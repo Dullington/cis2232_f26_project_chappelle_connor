@@ -1,3 +1,47 @@
+DROP DATABASE IF EXISTS cis2232_tennis_tracker;
+CREATE DATABASE cis2232_tennis_tracker;
+USE cis2232_tennis_tracker;
+
+CREATE TABLE tennis_match (
+    id INT NOT NULL AUTO_INCREMENT,
+
+    player1FirstName VARCHAR(100) NOT NULL,
+    player1LastName VARCHAR(100) NOT NULL,
+    player1DateOfBirth VARCHAR(10) NOT NULL,
+
+    player2FirstName VARCHAR(100) NOT NULL,
+    player2LastName VARCHAR(100) NOT NULL,
+    player2DateOfBirth VARCHAR(10) NOT NULL,
+
+    matchDate VARCHAR(10) NOT NULL,
+    createdDateTime VARCHAR(100) NOT NULL,
+    winnerName VARCHAR(201) NOT NULL,
+
+    tournamentName VARCHAR(150) NOT NULL,
+    courtSurface VARCHAR(20) NOT NULL,
+
+    setsPlayed INT NOT NULL,
+    player1SetsWon INT NOT NULL,
+    player2SetsWon INT NOT NULL,
+
+    player1Aces INT NOT NULL,
+    player2Aces INT NOT NULL,
+
+    player1DoubleFaults INT NOT NULL,
+    player2DoubleFaults INT NOT NULL,
+
+    player1FirstServe INT NOT NULL,
+    player2FirstServe INT NOT NULL,
+
+    player1BreakPointsWon INT NOT NULL,
+    player2BreakPointsWon INT NOT NULL,
+
+    player1TotalPointsWon INT NOT NULL,
+    player2TotalPointsWon INT NOT NULL,
+
+    PRIMARY KEY (id)
+);
+
 INSERT INTO tennis_match (
     player1FirstName, player1LastName, player1DateOfBirth,
     player2FirstName, player2LastName, player2DateOfBirth,
@@ -58,7 +102,6 @@ VALUES
  '2026-09-17', '2026-09-17 19:25:47', 'Dana White',
  'Fall Open', 'Clay',
  4, 1, 3, 2, 6, 3, 1, 62, 76, 4, 7, 46, 61);
- 
 # ALTER TABLE SkillsAssessmentSquashTechnical
 #     ADD PRIMARY KEY (id);
 # ALTER TABLE SkillsAssessmentSquashTechnical
