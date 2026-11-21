@@ -1,73 +1,64 @@
-DROP DATABASE IF EXISTS cis2232_tennis_tracker;
-CREATE DATABASE cis2232_tennis_tracker;
-USE cis2232_tennis_tracker;
-
-CREATE TABLE tennis_match (
-    id INT NOT NULL AUTO_INCREMENT,
-
-    player1FirstName VARCHAR(100) NOT NULL,
-    player1LastName VARCHAR(100) NOT NULL,
-    player1DateOfBirth VARCHAR(10) NOT NULL,
-
-    player2FirstName VARCHAR(100) NOT NULL,
-    player2LastName VARCHAR(100) NOT NULL,
-    player2DateOfBirth VARCHAR(10) NOT NULL,
-
-    matchDate VARCHAR(10) NOT NULL,
-    createdDateTime VARCHAR(100) NOT NULL,
-    winnerName VARCHAR(201) NOT NULL,
-
-    tournamentName VARCHAR(150) NOT NULL,
-    courtSurface VARCHAR(20) NOT NULL,
-
-    setsPlayed INT NOT NULL,
-    player1SetsWon INT NOT NULL,
-    player2SetsWon INT NOT NULL,
-
-    player1Aces INT NOT NULL,
-    player2Aces INT NOT NULL,
-
-    player1DoubleFaults INT NOT NULL,
-    player2DoubleFaults INT NOT NULL,
-
-    player1FirstServe INT NOT NULL,
-    player2FirstServe INT NOT NULL,
-
-    player1BreakPointsWon INT NOT NULL,
-    player2BreakPointsWon INT NOT NULL,
-
-    player1TotalPointsWon INT NOT NULL,
-    player2TotalPointsWon INT NOT NULL,
-
-    PRIMARY KEY (id)
-);
-
-INSERT INTO tennis_match
-(matchDate, createdDateTime, player1Name, player2Name,
- player1Game1Score, player2Game1Score,
- player1Game2Score, player2Game2Score,
- player1Game3Score, player2Game3Score,
- player1Game4Score, player2Game4Score,
- player1Game5Score, player2Game5Score,
- winnerName)
+INSERT INTO tennis_match (
+    player1FirstName, player1LastName, player1DateOfBirth,
+    player2FirstName, player2LastName, player2DateOfBirth,
+    matchDate, createdDateTime, winnerName,
+    tournamentName, courtSurface,
+    setsPlayed, player1SetsWon, player2SetsWon,
+    player1Aces, player2Aces,
+    player1DoubleFaults, player2DoubleFaults,
+    player1FirstServe, player2FirstServe,
+    player1BreakPointsWon, player2BreakPointsWon,
+    player1TotalPointsWon, player2TotalPointsWon
+)
 VALUES
--- 3-0 win
-('2026-09-01', '2026-09-01 19:45:12', 'Alice',  'Bob',    11, 5,  11, 7,  11, 9,  0, 0,   0, 0,   'Alice'),
--- 3-1 win
-('2026-09-03', '2026-09-03 20:10:05', 'Bob',    'Carlos', 11, 8,  9, 11,  11, 6,  11, 4,  0, 0,   'Bob'),
--- 3-2 win (deciding fifth game)
-('2026-09-05', '2026-09-05 18:30:40', 'Carlos', 'Dana',   11, 9,  8, 11,  11, 7,  6, 11,  11, 8, 'Carlos'),
--- 3-1 win with extended games (win by two)
-('2026-09-08', '2026-09-08 19:02:33', 'Dana',   'Alice',  12, 10, 11, 13, 11, 9,  14, 12, 0, 0,  'Dana'),
--- 3-1 win for player 2
-('2026-09-10', '2026-09-10 21:15:00', 'Alice',  'Carlos', 5, 11,  11, 8,  11, 13, 9, 11,  0, 0,  'Carlos'),
--- 3-0 shutout-style win
-('2026-09-12', '2026-09-12 17:50:21', 'Bob',    'Dana',   11, 3,  11, 6,  11, 8,  0, 0,   0, 0,   'Bob'),
--- 3-2 with extended fifth game
-('2026-09-15', '2026-09-15 20:40:18', 'Carlos', 'Bob',    9, 11,  11, 7,  8, 11,  11, 9,  11, 13, 'Bob'),
--- 3-1 win for player 2
-('2026-09-17', '2026-09-17 19:25:47', 'Alice',  'Dana',   4, 11,  6, 11,  11, 9,  3, 11,  0, 0,  'Dana');
+('Alice', 'Smith', '2001-04-12',
+ 'Bob', 'Jones', '2000-08-03',
+ '2026-09-01', '2026-09-01 19:45:12', 'Alice Smith',
+ 'Fall Open', 'Hard',
+ 3, 3, 0, 4, 2, 1, 3, 68, 55, 5, 3, 42, 35),
 
+('Bob', 'Jones', '2000-08-03',
+ 'Carlos', 'Garcia', '2002-03-21',
+ '2026-09-03', '2026-09-03 20:10:05', 'Bob Jones',
+ 'Fall Open', 'Clay',
+ 4, 3, 1, 5, 3, 2, 4, 72, 61, 6, 4, 58, 49),
+
+('Carlos', 'Garcia', '2002-03-21',
+ 'Dana', 'White', '2001-11-17',
+ '2026-09-05', '2026-09-05 18:30:40', 'Carlos Garcia',
+ 'Fall Open', 'Grass',
+ 5, 3, 2, 7, 4, 3, 2, 75, 66, 8, 5, 71, 65),
+
+('Dana', 'White', '2001-11-17',
+ 'Alice', 'Smith', '2001-04-12',
+ '2026-09-08', '2026-09-08 19:02:33', 'Dana White',
+ 'Fall Open', 'Hard',
+ 4, 3, 1, 6, 3, 2, 3, 70, 64, 7, 4, 63, 52),
+
+('Alice', 'Smith', '2001-04-12',
+ 'Carlos', 'Garcia', '2002-03-21',
+ '2026-09-10', '2026-09-10 21:15:00', 'Carlos Garcia',
+ 'Fall Open', 'Clay',
+ 4, 1, 3, 3, 8, 4, 2, 59, 78, 3, 9, 48, 66),
+
+('Bob', 'Jones', '2000-08-03',
+ 'Dana', 'White', '2001-11-17',
+ '2026-09-12', '2026-09-12 17:50:21', 'Bob Jones',
+ 'Fall Open', 'Grass',
+ 3, 3, 0, 9, 2, 1, 3, 81, 58, 7, 2, 55, 31),
+
+('Carlos', 'Garcia', '2002-03-21',
+ 'Bob', 'Jones', '2000-08-03',
+ '2026-09-15', '2026-09-15 20:40:18', 'Bob Jones',
+ 'Fall Open', 'Hard',
+ 5, 2, 3, 4, 7, 3, 2, 65, 73, 5, 8, 68, 72),
+
+('Alice', 'Smith', '2001-04-12',
+ 'Dana', 'White', '2001-11-17',
+ '2026-09-17', '2026-09-17 19:25:47', 'Dana White',
+ 'Fall Open', 'Clay',
+ 4, 1, 3, 2, 6, 3, 1, 62, 76, 4, 7, 46, 61);
+ 
 # ALTER TABLE SkillsAssessmentSquashTechnical
 #     ADD PRIMARY KEY (id);
 # ALTER TABLE SkillsAssessmentSquashTechnical
